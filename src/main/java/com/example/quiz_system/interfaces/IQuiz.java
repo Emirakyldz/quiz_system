@@ -2,9 +2,9 @@ package com.example.quiz_system.interfaces;
 
 import java.util.List;
 
-public interface IQuiz {
+public interface IQuiz<Q extends IQuestion<? extends IAnswer>> {
     String getTitle();
-    List<com.example.quiz_system.interfaces.IQuestion> getQuestions();
-    void addQuestion(com.example.quiz_system.interfaces.IQuestion question);
+    List<Q> getQuestions();
+    void addQuestion(Q question);
     void startQuiz();
 }

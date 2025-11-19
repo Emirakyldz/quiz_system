@@ -3,8 +3,8 @@ package com.example.quiz_system.model;
 import com.example.quiz_system.interfaces.IAnswer;
 
 public class Answer implements IAnswer {
-    private String text;
-    private boolean isCorrect;
+    private final String text;
+    private final boolean isCorrect;
 
     public Answer(String text, boolean isCorrect) {
         this.text = text;

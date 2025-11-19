@@ -1,11 +1,15 @@
 package com.example.quiz_system.model;
 
+import com.example.quiz_system.interfaces.IAnswer;
+import com.example.quiz_system.interfaces.IQuestion;
+import com.example.quiz_system.interfaces.IQuiz;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Quiz implements com.example.quiz_system.interfaces.IQuiz {
-    private String title;
-    private List<com.example.quiz_system.interfaces.IQuestion> questions;
+public class Quiz<Q extends IQuestion<? extends IAnswer>> implements IQuiz<Q> {
+    private final String title;
+    private final List<Q> questions;
 
     public Quiz(String title) {
         this.title = title;
@@ -18,19 +22,19 @@ public class Quiz implements com.example.quiz_system.interfaces.IQuiz {
     }
 
     @Override
-    public List<com.example.quiz_system.interfaces.IQuestion> getQuestions() {
+    public List<Q> getQuestions() {
         return questions;
     }
 
     @Override
-    public void addQuestion(com.example.quiz_system.interfaces.IQuestion question) {
+    public void addQuestion(Q question) {
         questions.add(question);
     }
 
     @Override
     public void startQuiz() {
         System.out.println("Starting quiz: " + title);
-        for (com.example.quiz_system.interfaces.IQuestion q : questions) {
+        for (Q q : questions) {
             System.out.println(q);
         }
     }

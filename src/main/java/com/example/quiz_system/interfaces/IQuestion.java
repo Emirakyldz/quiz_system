@@ -2,8 +2,8 @@ package com.example.quiz_system.interfaces;
 
 import java.util.List;
 
-public interface IQuestion {
+public interface IQuestion<A extends IAnswer> {
     String getText();
-    List<IAnswer> getAnswers();
-    boolean checkAnswer(IAnswer answer);
+    List<A> getAnswers();
+    boolean checkAnswer(A answer);
 }

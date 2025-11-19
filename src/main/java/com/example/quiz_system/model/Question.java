@@ -1,12 +1,15 @@
 package com.example.quiz_system.model;
 
+import com.example.quiz_system.interfaces.IAnswer;
+import com.example.quiz_system.interfaces.IQuestion;
+
 import java.util.List;
 
-public class Question implements com.example.quiz_system.interfaces.IQuestion {
-    private String text;
-    private List<com.example.quiz_system.interfaces.IAnswer> answers;
+public class Question<A extends IAnswer> implements IQuestion<A> {
+    private final String text;
+    private final List<A> answers;
 
-    public Question(String text, List<com.example.quiz_system.interfaces.IAnswer> answers) {
+    public Question(String text, List<A> answers) {
         this.text = text;
         this.answers = answers;
     }
@@ -17,12 +20,15 @@ public class Question implements com.example.quiz_system.interfaces.IQuestion {
     }
 
     @Override
-    public List<com.example.quiz_system.interfaces.IAnswer> getAnswers() {
+    public List<A> getAnswers() {
         return answers;
     }
 
     @Override
-    public boolean checkAnswer(com.example.quiz_system.interfaces.IAnswer answer) {
+    public boolean checkAnswer(A answer) {
+        if (answer == null) {
+            return false;
+        }
         return answer.isCorrect();
     }
 
